@@ -3,6 +3,7 @@
 namespace Tests\Feature\UserController;
 
 use App\Helpers\Lang;
+use App\Exceptions\FieldsException;
 use App\Http\Middleware\HasWorkAreaMiddleware;
 use App\User;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -22,7 +23,7 @@ class RegisterTest extends TestCase
     use WithFaker;
 
     /**
-     * Caso cuando se crea un usuario correctamente y se asigna correctamente.
+     * Caso cuando se crea un usuario correctamente
      *
      * @title-doc Registrar nuevo usuario
      * @description-doc En este ejemplo se registra un nuevo  usuario.
@@ -36,19 +37,14 @@ class RegisterTest extends TestCase
             'email' => $this->faker->safeEmail,
             'password' => $this->faker->password(8),
             'need_change_password' => 0,
-            'roles' => 'Manager',
         ];
-        $response = $this->auth()->post($this->example->getURL(), $credentials);
+        $response = $this->post('/api/user/', $credentials);
         unset($credentials['password']);
-        unset($credentials['corporate_id']);
-        unset($credentials['roles']);
-        $user = User::where($credentials)->with(User::RELATIONSHIPS)->first()->toArray();
+        $user = User::where('name', $credentials['name'])->first()->toArray();
         $response->assertJson([
             'status' => true,
             'data' => $user,
         ]);
         $response->assertStatus(201);
-
-        $this->example->setResponse($response->json(), $response->status());
     }
 }
