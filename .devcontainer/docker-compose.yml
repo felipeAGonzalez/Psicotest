@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  vscode:
+    image: felipe89/php:7.4-php-2.0.7-composer
+    volumes:
+      - ./:/var/www/html
+      - ./storage/logs:/var/logs
+      - vendor:/var/www/html/vendor
+      - composer_cache:/tmp/composer
+    command: sh -c 'tail -f /dev/null'
+

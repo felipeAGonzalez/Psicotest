@@ -1,0 +1,36 @@
+{
+    "name": "Existing Docker Compose (Extend)",
+    "dockerComposeFile": [
+        "../docker-compose.yml",
+        "docker-compose.yml"
+    ],
+    "service": "vscode",
+    "workspaceFolder": "/var/www/html",
+    "settings": {
+        "terminal.integrated.shell.linux": null,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": false,
+        "cSpell.language": "en,es,en-US,en-GB,es-ES",
+        "[markdown]": {
+            "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+        },
+        "[php]": {
+            "editor.defaultFormatter": "junstyle.php-cs-fixer"
+        },
+        "php-cs-fixer.executablePath": "/var/www/html/vendor/bin/php-cs-fixer",
+        "php-cs-fixer.config": "/var/www/html/.php-cs-fixer.php",
+        "php-cs-fixer.onsave": true,
+        "phpmd.rules": "${workspaceFolder}/rulesets.xml",
+    },
+    "extensions": [
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-spanish",
+        "EditorConfig.EditorConfig",
+        "yzhang.markdown-all-in-one",
+        "junstyle.php-cs-fixer",
+        "2gua.rainbow-brackets",
+        "bmewburn.vscode-intelephense-client",
+        "ecodes.vscode-phpmd"
+    ],
+    "postStartCommand": "apt-get update && apt-get install -y git"
+}
