@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    // use HasFactory;
     use Notifiable;
 
     /**
@@ -15,8 +17,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $primaryKey = 'user_id';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','last_name_1','last_name_2', 'email', 'password','need_change_password','is_root'
     ];
 
     /**
@@ -25,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','email_verified_at'
     ];
 
     /**

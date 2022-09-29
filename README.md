@@ -8,6 +8,8 @@
 - Docker `~> 19.03.12`
 - Docker Compose `~> 1.26.0`
 
+La creación de la base de datos como la ejecución del proyecto en modo desarrollo se realiza con los comandos para docker `docker-compose up -d` para lo cual es importante tener docker instalado en su version de escritorio para Windows, Mac o Linux y el motor de docker junto con docker compose para su facilidad de uso en la construcción de los contenedores
+
 ## Uso de docker
 
 Comandos básicos:
